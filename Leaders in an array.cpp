@@ -1,5 +1,6 @@
 #include <bits/stdc++.h> 
 vector<int> findLeaders(vector<int> &elements, int n) {
+    //Optimal Approach -O(N) Time Complexity
     vector<int>ans;
     int maxi=INT_MIN;
     

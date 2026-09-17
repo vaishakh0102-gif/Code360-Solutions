@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int countPartitions(vector<int> &a, long long maxSum) {
+    int partitions = 1;
+    long long currentSubarraySum = 0;
+    
+    for (int i = 0; i < a.size(); i++) {
+        if (currentSubarraySum + a[i] <= maxSum) {
+            currentSubarraySum += a[i];
+        } else {
+            partitions++;
+            currentSubarraySum = a[i];
+        }
+    }
+    return partitions;
+}
+
+int findLargestMinDistance(vector<int> &boards, int k) {
+    int n = boards.size();
+    if (k > n) return -1;
+    
+    long long low = *max_element(boards.begin(), boards.end());
+    long long high = accumulate(boards.begin(), boards.end(), 0LL);
+    
+    while (low <= high) {
+        long long mid = low + (high - low) / 2;
+        int partitions = countPartitions(boards, mid);
+        
+        if (partitions > k) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    
+    return low;
+}

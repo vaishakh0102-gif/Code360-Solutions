@@ -1,0 +1,32 @@
+int cnt=0;
+void sets(int ind,vector<int>& arr,int target,vector<int>& ds){
+	if(ind==arr.size()){
+		int sum=0;
+		for (int i=0;i<ds.size();i++){
+			sum+=ds[i];
+
+		}
+		if (sum==target)cnt++;
+		return;
+	}
+	ds.push_back(arr[ind]);
+	sets(ind+1,arr,target,ds);
+
+	ds.pop_back();
+	sets(ind+1,arr,target,ds);
+
+
+}
+
+
+
+int findWays(vector<int>& arr, int k)
+
+{
+	cnt=0;
+	vector<int>ds;
+	sets(0,arr,k,ds);
+	return cnt;
+    
+	
+}

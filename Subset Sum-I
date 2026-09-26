@@ -1,0 +1,22 @@
+void comb(int ind,vector<int> &num,int sum,vector<int>&ans){
+	int n=num.size();
+	if(ind==n){
+		ans.push_back(sum);
+		return;
+
+	}
+	comb(ind+1,num,sum+num[ind],ans);
+	comb(ind+1,num,sum,ans);
+
+}
+
+
+
+
+vector<int> subsetSum(vector<int> &num){
+	vector<int>ans;
+	comb(0,num,0,ans);
+	sort(ans.begin(),ans.end());
+	return ans;
+	
+}

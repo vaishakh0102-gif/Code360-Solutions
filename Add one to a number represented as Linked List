@@ -24,7 +24,7 @@
 Node *addOne(Node *head)
 {
     // Brute solution
-     if(head==nullptr || head->next==nullptr)return head;
+     if(head==nullptr )return NULL;
         Node *back=nullptr;
         Node *temp=head;
        

@@ -1,0 +1,81 @@
+/**
+ * Definition of linked list:
+ *
+ * class Node {
+ * public:
+ *      int data;
+ *      Node *next;
+ *      Node() {
+ *          this->data = 0;
+ *          this->next = NULL;
+ *      }
+ *      Node(int data) {
+ *          this->data = data;
+ *          this->next = NULL;
+ *      }
+ *      Node (int data, Node *next) {
+ *          this->data = data;
+ *          this->next = next;
+ *      }
+ * };
+ *
+ *************************************************************************/
+
+Node *addOne(Node *head)
+{
+    // Brute solution
+     if(head==nullptr || head->next==nullptr)return head;
+        Node *back=nullptr;
+        Node *temp=head;
+       
+        while(temp!=nullptr){
+            Node *front=temp->next;
+
+            
+            temp->next=back;
+            
+            back=temp;
+            temp=front;
+        }
+        Node *curr=back;
+        Node *newhead=new Node(0);
+        Node *dummy=newhead;
+        int sum=0;
+        int carry=1;
+        while(curr!=NULL || carry!=0){
+            sum=carry;
+            if(curr!=NULL){
+                sum+=curr->data;
+                curr=curr->next;
+            }
+                    
+
+            if(sum>9){
+                carry=1;
+                dummy->next=new Node(sum%10);
+                dummy=dummy->next;
+            }
+            else {
+                carry=0;
+                dummy->next= new Node (sum);
+                dummy=dummy->next;
+            }
+            
+
+
+        }
+        dummy=newhead->next;
+        Node *prev=nullptr;
+        while(dummy!=NULL){
+             Node *front=dummy->next;
+
+            
+            dummy->next=prev;
+            
+            prev=dummy;
+            dummy=front;
+
+        }
+        return prev;
+    // Write Your Code Here.
+}
